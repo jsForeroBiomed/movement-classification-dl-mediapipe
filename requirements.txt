@@ -1,0 +1,25 @@
+# Core DL
+torch==2.8.0
+torchvision==0.23.0
+
+# GCN
+torch-geometric==2.6.1
+
+# TCN / bloques para MS-TCN
+pytorch-tcn==1.2.3
+
+# Métricas y HPO
+scikit-learn==1.7.2
+optuna==4.5.0
+
+# Utilidades
+numpy==2.2.6
+pandas==2.3.3
+tqdm==4.67.1
+
+# Visualización
+matplotlib==3.10.0
+
+# Jupyter (para notebooks)
+ipykernel==6.29.5
+jupyter==1.1.1
