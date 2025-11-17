@@ -1,0 +1,11 @@
+{
+  "best_params": {
+    "hidden": 96,
+    "layers": 5,
+    "num_heads": 4,
+    "dropout": 0.26136641469099703,
+    "lr": 0.00035813934999486707,
+    "weight_decay": 1.5063777323554432e-10
+  },
+  "best_value": 0.95
+}
