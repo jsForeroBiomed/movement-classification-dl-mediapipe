@@ -1,0 +1,122 @@
+[
+  {
+    "trial": 0,
+    "params": {
+      "hidden": 128,
+      "layers": 2,
+      "dropout": 0.07799726016810132,
+      "kernel_size": 5,
+      "lr": 0.0013035123791853842,
+      "weight_decay": 1.3934502251337584e-10
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 1,
+    "params": {
+      "hidden": 96,
+      "layers": 2,
+      "dropout": 0.15212112147976886,
+      "kernel_size": 3,
+      "lr": 0.0008369042894376068,
+      "weight_decay": 9.472334467618544e-10
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 2,
+    "params": {
+      "hidden": 192,
+      "layers": 2,
+      "dropout": 0.2571172192068058,
+      "kernel_size": 7,
+      "lr": 0.0001096524277832185,
+      "weight_decay": 2.853390105240223e-10
+    },
+    "best_val_acc": 0.9111111111111111
+  },
+  {
+    "trial": 3,
+    "params": {
+      "hidden": 128,
+      "layers": 2,
+      "dropout": 0.34211651325607845,
+      "kernel_size": 7,
+      "lr": 5.8579686961535335e-05,
+      "weight_decay": 0.0002318690670290197
+    },
+    "best_val_acc": 0.9222222222222223
+  },
+  {
+    "trial": 4,
+    "params": {
+      "hidden": 128,
+      "layers": 4,
+      "dropout": 0.09242722776276352,
+      "kernel_size": 3,
+      "lr": 0.0030805247696904818,
+      "weight_decay": 1.5321449415450716e-06
+    },
+    "best_val_acc": 0.9277777777777778
+  },
+  {
+    "trial": 10,
+    "params": {
+      "hidden": 128,
+      "layers": 3,
+      "dropout": 0.0037736596581466053,
+      "kernel_size": 3,
+      "lr": 0.004637678633541706,
+      "weight_decay": 2.5531292949199678e-08
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 20,
+    "params": {
+      "hidden": 128,
+      "layers": 2,
+      "dropout": 0.4131335100926455,
+      "kernel_size": 7,
+      "lr": 0.000742859113095686,
+      "weight_decay": 1.3274412053286292e-07
+    },
+    "best_val_acc": 0.9055555555555556
+  },
+  {
+    "trial": 23,
+    "params": {
+      "hidden": 128,
+      "layers": 3,
+      "dropout": 0.1400581744958521,
+      "kernel_size": 5,
+      "lr": 0.0009387331318914297,
+      "weight_decay": 2.5677062988088583e-09
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 27,
+    "params": {
+      "hidden": 96,
+      "layers": 2,
+      "dropout": 0.31953519251095136,
+      "kernel_size": 7,
+      "lr": 0.0002591144667122849,
+      "weight_decay": 1.9440339271153755e-07
+    },
+    "best_val_acc": 0.9444444444444444
+  },
+  {
+    "trial": 33,
+    "params": {
+      "hidden": 160,
+      "layers": 2,
+      "dropout": 0.035846429868023603,
+      "kernel_size": 7,
+      "lr": 0.00034521429763049235,
+      "weight_decay": 9.996832227896143e-09
+    },
+    "best_val_acc": 0.9388888888888889
+  }
+]

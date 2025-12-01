@@ -1,0 +1,110 @@
+[
+  {
+    "trial": 0,
+    "params": {
+      "hidden_size": 96,
+      "num_layers": 1,
+      "dropout": 0.02904180608409973,
+      "bidirectional": false,
+      "lr": 0.0013035123791853842,
+      "weight_decay": 1.3934502251337584e-10
+    },
+    "best_val_acc": 0.8611111111111112
+  },
+  {
+    "trial": 1,
+    "params": {
+      "hidden_size": 64,
+      "num_layers": 2,
+      "dropout": 0.2623782158161189,
+      "bidirectional": false,
+      "lr": 0.0008369042894376068,
+      "weight_decay": 9.472334467618544e-10
+    },
+    "best_val_acc": 0.85
+  },
+  {
+    "trial": 2,
+    "params": {
+      "hidden_size": 160,
+      "num_layers": 3,
+      "dropout": 0.29620728443102123,
+      "bidirectional": true,
+      "lr": 0.0001096524277832185,
+      "weight_decay": 2.853390105240223e-10
+    },
+    "best_val_acc": 0.8611111111111112
+  },
+  {
+    "trial": 3,
+    "params": {
+      "hidden_size": 96,
+      "num_layers": 3,
+      "dropout": 0.22007624686980065,
+      "bidirectional": true,
+      "lr": 5.8579686961535335e-05,
+      "weight_decay": 0.0002318690670290197
+    },
+    "best_val_acc": 0.8611111111111112
+  },
+  {
+    "trial": 4,
+    "params": {
+      "hidden_size": 96,
+      "num_layers": 1,
+      "dropout": 0.4847923138822793,
+      "bidirectional": true,
+      "lr": 0.0030805247696904818,
+      "weight_decay": 1.5321449415450716e-06
+    },
+    "best_val_acc": 0.8666666666666667
+  },
+  {
+    "trial": 6,
+    "params": {
+      "hidden_size": 160,
+      "num_layers": 1,
+      "dropout": 0.0027610585618011996,
+      "bidirectional": false,
+      "lr": 0.001435437674097734,
+      "weight_decay": 2.5054885755573557e-05
+    },
+    "best_val_acc": 0.8777777777777778
+  },
+  {
+    "trial": 17,
+    "params": {
+      "hidden_size": 160,
+      "num_layers": 2,
+      "dropout": 0.31122173984401474,
+      "bidirectional": true,
+      "lr": 0.0003293390194243909,
+      "weight_decay": 9.629032699554377e-07
+    },
+    "best_val_acc": 0.8666666666666667
+  },
+  {
+    "trial": 35,
+    "params": {
+      "hidden_size": 64,
+      "num_layers": 2,
+      "dropout": 0.17888021795170964,
+      "bidirectional": false,
+      "lr": 0.0009532769194200945,
+      "weight_decay": 4.000072017057411e-07
+    },
+    "best_val_acc": 0.8611111111111112
+  },
+  {
+    "trial": 38,
+    "params": {
+      "hidden_size": 192,
+      "num_layers": 3,
+      "dropout": 0.11408077261650389,
+      "bidirectional": true,
+      "lr": 0.0002962349392645745,
+      "weight_decay": 4.855513661289156e-06
+    },
+    "best_val_acc": 0.85
+  }
+]

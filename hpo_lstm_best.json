@@ -1,0 +1,11 @@
+{
+  "best_params": {
+    "hidden_size": 160,
+    "num_layers": 1,
+    "dropout": 0.0027610585618011996,
+    "bidirectional": false,
+    "lr": 0.001435437674097734,
+    "weight_decay": 2.5054885755573557e-05
+  },
+  "best_value": 0.8777777777777778
+}
