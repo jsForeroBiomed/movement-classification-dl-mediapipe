@@ -1,0 +1,92 @@
+import json
+from metrics import metrics_from_preds
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch_geometric.nn import global_mean_pool
+
+# --- Cargar los mejores hiperparámetros ---
+print("Cargando los mejores hiperparámetros desde hpo_gcn_best.json...")
+try:
+    with open("hpo_gcn_best.json", "r") as f:
+        best_hyperparams = json.load(f)["best_params"]
+    print("Hiperparámetros cargados:")
+    print(best_hyperparams)
+except FileNotFoundError:
+    print("Error: El archivo 'hpo_gcn_best.json' no fue encontrado.")
+    print("Por favor, ejecuta primero la celda de optimización para generar este archivo.")
+    raise
+
+# --- Configurar y entrenar el mejor modelo ---
+set_seed(42)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Instanciar el modelo con los mejores hiperparámetros
+# Nota: El modelo GCN usa 'hidden_channels', que corresponde a 'hidden' en el JSON.
+best_model = GCNModel(
+    hidden_channels=best_hyperparams["hidden"],
+    layers=best_hyperparams["layers"],
+    dropout=best_hyperparams["dropout"]
+).to(device)
+
+# Definir criterio de pérdida y optimizador
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(
+    best_model.parameters(),
+    lr=best_hyperparams["lr"],
+    weight_decay=best_hyperparams["weight_decay"]
+)
+
+# Entrenamiento del modelo
+epochs = 100  # Usamos las mismas épocas que en la búsqueda de hiperparámetros
+print(f"\nEntrenando el mejor modelo GCN durante {epochs} épocas...")
+
+for epoch in range(epochs):
+    best_model.train()
+    total_loss = 0
+    for batch in train_loader_graph:
+        batch = batch.to(device)
+        optimizer.zero_grad()
+        out = best_model(batch.x, batch.edge_index, batch.batch)
+        loss = criterion(out, batch.y)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    
+    if (epoch + 1) % 10 == 0:
+        print(f"Epoch [{epoch+1}/{epochs}], Loss: {total_loss / len(train_loader_graph):.4f}")
+
+print("Entrenamiento completado.")
+
+# --- Evaluación del modelo y cálculo de métricas ---
+best_model.eval()
+all_metrics = {}
+
+def evaluate_graph_model(loader, model_name):
+    y_true, y_pred = [], []
+    with torch.no_grad():
+        for batch in loader:
+            batch = batch.to(device)
+            predictions = best_model(batch.x, batch.edge_index, batch.batch).argmax(1)
+            y_true.extend(batch.y.cpu().numpy())
+            y_pred.extend(predictions.cpu().numpy())
+    
+    metrics = metrics_from_preds(y_true, y_pred)
+    all_metrics[model_name] = metrics
+
+print("\n--- Métricas del Modelo Final (GCN) ---")
+evaluate_graph_model(train_loader_graph, "Train")
+evaluate_graph_model(val_loader_graph, "Validation")
+
+for split_name, metrics in all_metrics.items():
+    print(f"\nResultados en el conjunto de {split_name}:")
+    for metric_name, value in metrics.items():
+        if isinstance(value, float):
+            print(f"  {metric_name}: {value:.4f}")
+        else:
+            print(f"  {metric_name}: {value}")
+
+# --- Guardar el modelo entrenado ---
+model_save_path = "gcn_best_model.pth"
+torch.save(best_model.state_dict(), model_save_path)
+print(f"\nModelo guardado exitosamente en: {model_save_path}")

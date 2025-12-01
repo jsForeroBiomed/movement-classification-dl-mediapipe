@@ -1,0 +1,95 @@
+import json
+from metrics import metrics_from_preds # Corregido de "metrics_from_"
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# --- Cargar los mejores hiperparámetros ---
+print("Cargando los mejores hiperparámetros desde hpo_transformer_best.json...")
+try:
+    with open("hpo_transformer_best.json", "r") as f:
+        best_hyperparams = json.load(f)["best_params"]
+    print("Hiperparámetros cargados:")
+    print(best_hyperparams)
+except FileNotFoundError:
+    print("Error: El archivo 'hpo_transformer_best.json' no fue encontrado.")
+    print("Por favor, asegúrate de que el archivo exista y contenga los mejores hiperparámetros.")
+    # Detener la ejecución si el archivo no existe.
+    # En un notebook, puedes simplemente no ejecutar las celdas siguientes.
+    raise
+
+# --- Configurar y entrenar el mejor modelo ---
+set_seed(42)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Instanciar el modelo con los mejores hiperparámetros
+best_model = TransformerModel(
+    hidden=best_hyperparams["hidden"],
+    layers=best_hyperparams["layers"],
+    num_heads=best_hyperparams["num_heads"],
+    dropout=best_hyperparams["dropout"]
+).to(device)
+
+# Definir criterio de pérdida y optimizador
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(
+    best_model.parameters(),
+    lr=best_hyperparams["lr"],
+    weight_decay=best_hyperparams["weight_decay"]
+)
+
+# Entrenamiento del modelo
+epochs = 100  # Usamos 100 épocas como en la búsqueda de hiperparámetros
+print(f"\nEntrenando el mejor modelo durante {epochs} épocas...")
+
+for epoch in range(epochs):
+    best_model.train()
+    for X_batch, y_batch in train_loader:
+        X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+        
+        optimizer.zero_grad()
+        outputs = best_model(X_batch)
+        loss = criterion(outputs, y_batch)
+        loss.backward()
+        optimizer.step()
+    
+    if (epoch + 1) % 10 == 0:
+        print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
+
+print("Entrenamiento completado.")
+
+# --- Evaluación del modelo y cálculo de métricas ---
+best_model.eval()
+all_metrics = {}
+
+# Función para evaluar un dataloader
+def evaluate_model(loader, model_name):
+    y_true, y_pred = [], []
+    with torch.no_grad():
+        for X, y in loader:
+            X, y = X.to(device), y.to(device)
+            predictions = best_model(X).argmax(1)
+            y_true.extend(y.cpu().numpy())
+            y_pred.extend(predictions.cpu().numpy())
+    
+    metrics = metrics_from_preds(y_true, y_pred)
+    all_metrics[model_name] = metrics
+
+# Evaluar en conjunto de entrenamiento y validación
+print("\n--- Métricas del Modelo Final ---")
+evaluate_model(train_loader, "Train")
+evaluate_model(val_loader, "Validation")
+
+# Imprimir métricas de forma legible
+for split_name, metrics in all_metrics.items():
+    print(f"\nResultados en el conjunto de {split_name}:")
+    for metric_name, value in metrics.items():
+        if isinstance(value, float):
+            print(f"  {metric_name}: {value:.4f}")
+        else:
+            print(f"  {metric_name}: {value}")
+
+# --- Guardar el modelo entrenado ---
+model_save_path = "transformer_best_model.pth"
+torch.save(best_model.state_dict(), model_save_path)
+print(f"\nModelo guardado exitosamente en: {model_save_path}")
