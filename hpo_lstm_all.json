@@ -9,7 +9,7 @@
       "lr": 0.0013035123791853842,
       "weight_decay": 1.3934502251337584e-10
     },
-    "best_val_acc": 0.8611111111111112
+    "best_val_acc": 0.8333333333333334
   },
   {
     "trial": 1,
@@ -21,7 +21,7 @@
       "lr": 0.0008369042894376068,
       "weight_decay": 9.472334467618544e-10
     },
-    "best_val_acc": 0.85
+    "best_val_acc": 0.8333333333333334
   },
   {
     "trial": 2,
@@ -33,7 +33,7 @@
       "lr": 0.0001096524277832185,
       "weight_decay": 2.853390105240223e-10
     },
-    "best_val_acc": 0.8611111111111112
+    "best_val_acc": 0.8333333333333334
   },
   {
     "trial": 3,
@@ -45,7 +45,7 @@
       "lr": 5.8579686961535335e-05,
       "weight_decay": 0.0002318690670290197
     },
-    "best_val_acc": 0.8611111111111112
+    "best_val_acc": 0.6666666666666666
   },
   {
     "trial": 4,
@@ -57,54 +57,102 @@
       "lr": 0.0030805247696904818,
       "weight_decay": 1.5321449415450716e-06
     },
-    "best_val_acc": 0.8666666666666667
+    "best_val_acc": 0.9166666666666666
   },
   {
-    "trial": 6,
+    "trial": 7,
+    "params": {
+      "hidden_size": 160,
+      "num_layers": 2,
+      "dropout": 0.03177917514301182,
+      "bidirectional": true,
+      "lr": 0.0014394028591544622,
+      "weight_decay": 2.9033694281285623e-06
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 12,
     "params": {
       "hidden_size": 160,
       "num_layers": 1,
-      "dropout": 0.0027610585618011996,
-      "bidirectional": false,
-      "lr": 0.001435437674097734,
-      "weight_decay": 2.5054885755573557e-05
+      "dropout": 0.3756846638970522,
+      "bidirectional": true,
+      "lr": 0.002135160990343673,
+      "weight_decay": 5.214063244200167e-08
     },
-    "best_val_acc": 0.8777777777777778
+    "best_val_acc": 0.9166666666666666
   },
   {
-    "trial": 17,
+    "trial": 13,
+    "params": {
+      "hidden_size": 128,
+      "num_layers": 2,
+      "dropout": 0.1086820344432691,
+      "bidirectional": true,
+      "lr": 0.0025201895662785427,
+      "weight_decay": 9.288790020905569e-06
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 15,
     "params": {
       "hidden_size": 160,
       "num_layers": 2,
-      "dropout": 0.31122173984401474,
+      "dropout": 0.2184808372656895,
       "bidirectional": true,
-      "lr": 0.0003293390194243909,
-      "weight_decay": 9.629032699554377e-07
+      "lr": 0.0024374190873695783,
+      "weight_decay": 8.085194122378699e-08
     },
-    "best_val_acc": 0.8666666666666667
+    "best_val_acc": 0.9166666666666666
   },
   {
-    "trial": 35,
+    "trial": 22,
     "params": {
-      "hidden_size": 64,
+      "hidden_size": 160,
+      "num_layers": 1,
+      "dropout": 0.4119403393600323,
+      "bidirectional": true,
+      "lr": 0.0035518377766491074,
+      "weight_decay": 1.2525155241132556e-06
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 27,
+    "params": {
+      "hidden_size": 160,
+      "num_layers": 1,
+      "dropout": 0.44870890496731464,
+      "bidirectional": true,
+      "lr": 0.003308011734253236,
+      "weight_decay": 5.733663625577719e-07
+    },
+    "best_val_acc": 0.9166666666666666
+  },
+  {
+    "trial": 33,
+    "params": {
+      "hidden_size": 128,
       "num_layers": 2,
-      "dropout": 0.17888021795170964,
-      "bidirectional": false,
-      "lr": 0.0009532769194200945,
-      "weight_decay": 4.000072017057411e-07
+      "dropout": 0.04601012779936964,
+      "bidirectional": true,
+      "lr": 0.00179437370521333,
+      "weight_decay": 6.993188218331852e-05
     },
-    "best_val_acc": 0.8611111111111112
+    "best_val_acc": 0.9166666666666666
   },
   {
-    "trial": 38,
+    "trial": 36,
     "params": {
-      "hidden_size": 192,
-      "num_layers": 3,
-      "dropout": 0.11408077261650389,
+      "hidden_size": 160,
+      "num_layers": 1,
+      "dropout": 0.10172398806248475,
       "bidirectional": true,
-      "lr": 0.0002962349392645745,
-      "weight_decay": 4.855513661289156e-06
+      "lr": 0.0036426649457935354,
+      "weight_decay": 4.5567958587342045e-07
     },
-    "best_val_acc": 0.85
+    "best_val_acc": 0.9166666666666666
   }
 ]
